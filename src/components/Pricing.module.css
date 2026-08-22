@@ -1,0 +1,235 @@
+.section {
+  padding-block: 96px;
+  background: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+/* Card */
+.card {
+  background: var(--color-neutral-50);
+  border: 1.5px solid var(--color-neutral-200);
+  border-radius: 24px;
+  padding: 36px 32px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.08);
+}
+
+/* Featured card */
+.featured {
+  background: linear-gradient(155deg, #0a1929 0%, #0d2b5e 100%);
+  border-color: rgba(37,99,235,.5);
+  box-shadow: 0 20px 60px rgba(37,99,235,.2);
+}
+
+.featured:hover {
+  box-shadow: 0 28px 80px rgba(37,99,235,.3);
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(245,158,11,.4);
+}
+
+/* Header */
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.planName {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.featured .planName { color: #fff; }
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--color-neutral-900);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.featured .price { color: #fff; }
+
+.currency {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-neutral-500);
+}
+
+.featured .currency { color: rgba(255,255,255,.6); }
+
+.savings {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.featured .savings {
+  background: rgba(16,185,129,.15);
+  border-color: rgba(16,185,129,.3);
+}
+
+.desc {
+  font-size: 0.875rem;
+  color: var(--color-neutral-500);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.featured .desc { color: rgba(255,255,255,.55); }
+
+/* Module list */
+.modules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.moduleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--color-neutral-700);
+  line-height: 1.5;
+}
+
+.featured .moduleItem { color: rgba(255,255,255,.8); }
+
+.moduleItem svg {
+  color: var(--color-primary-500);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.featured .moduleItem svg { color: #60a5fa; }
+
+/* CTA */
+.planCta {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* ROI box */
+.roi {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1px solid #86efac;
+  border-radius: 20px;
+  padding: 32px 40px;
+  margin-bottom: 32px;
+}
+
+.roiIcon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.roi strong {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  color: #15803d;
+  margin-bottom: 8px;
+}
+
+.roi p {
+  font-size: 0.92rem;
+  color: #166534;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Addons */
+.addons {
+  background: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: 20px;
+  padding: 32px 40px;
+}
+
+.addonsTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  margin-bottom: 20px;
+}
+
+.addonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.addon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.addon span {
+  font-size: 0.85rem;
+  color: var(--color-neutral-500);
+}
+
+.addon strong {
+  font-size: 0.95rem;
+  color: var(--color-neutral-900);
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+  .addonGrid { grid-template-columns: 1fr; }
+  .roi { flex-direction: column; }
+}
