@@ -7,8 +7,8 @@ import { contact } from '@/data/contact';
 const links = [['Nosotros', '#nosotros'], ['Capacitación', '#capacitacion'], ['Servicios', '#servicios'], ['Pólizas', '#polizas'], ['En acción', '#galeria']];
 const heroSlides = [
   { src: '/images/gallery/carryon-23.jpg', position: 'center 53%', label: 'Práctica de operación con montacargas' },
-  { src: '/images/operacion-montacargas.jpg', position: 'center 49%', label: 'Operación de montacargas en almacén' },
-  { src: '/images/gallery/carryon-25.jpg', position: 'center 52%', label: 'Capacitación en planta industrial' },
+  { src: '/images/gallery/carryon-24.jpg', position: 'center 53%', label: 'Práctica de operación segura en almacén' },
+  { src: '/images/gallery/carryon-17.jpg', position: 'center 51%', label: 'Capacitación y asesoría para equipos de trabajo' },
   { src: '/images/gallery/carryon-27.jpg', position: 'center 48%', label: 'Operación segura de equipos industriales' },
 ];
 const galleryGroup = (start, end, details) => Array.from({ length: end - start + 1 }, (_, offset) => ({
