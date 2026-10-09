@@ -5,6 +5,12 @@ import { ArrowUpRight, ArrowRight, Menu, X, MoveUpRight, MapPin, Phone, MessageC
 import { contact } from '@/data/contact';
 
 const links = [['Nosotros', '#nosotros'], ['Capacitación', '#capacitacion'], ['Servicios', '#servicios'], ['Pólizas', '#polizas'], ['En acción', '#galeria']];
+const heroSlides = [
+  { src: '/images/gallery/carryon-23.jpg', position: 'center 53%', label: 'Práctica de operación con montacargas' },
+  { src: '/images/operacion-montacargas.jpg', position: 'center 49%', label: 'Operación de montacargas en almacén' },
+  { src: '/images/gallery/carryon-25.jpg', position: 'center 52%', label: 'Capacitación en planta industrial' },
+  { src: '/images/gallery/carryon-27.jpg', position: 'center 48%', label: 'Operación segura de equipos industriales' },
+];
 const galleryGroup = (start, end, details) => Array.from({ length: end - start + 1 }, (_, offset) => ({
   src: `gallery/carryon-${String(start + offset).padStart(2, '0')}`,
   ...details,
@@ -110,6 +116,7 @@ function WhatsAppLink({ children, className = '', message = 'Hola, me gustaría 
 export default function CarryOnWebsite() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activePhoto, setActivePhoto] = useState(0);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const dialog = useRef(null);
   const [requestReady, setRequestReady] = useState(false);
 
@@ -122,6 +129,13 @@ export default function CarryOnWebsite() {
     }, { threshold: 0.12 });
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveHeroSlide((current) => (current + 1) % heroSlides.length);
+    }, 5800);
+    return () => window.clearInterval(interval);
   }, []);
 
   function sendRequest(event) {
@@ -151,7 +165,7 @@ export default function CarryOnWebsite() {
 
     <main id="contenido">
       <section className="hero" id="inicio" aria-labelledby="hero-title">
-        <img className="hero-photo" src="/images/operacion-montacargas.jpg" alt="Capacitación práctica con montacargas en un almacén industrial" fetchPriority="high" width="1280" height="960" />
+        <div className="hero-media" aria-hidden="true">{heroSlides.map((slide, index) => <img className={`hero-photo ${index === activeHeroSlide ? 'is-active' : ''}`} key={slide.src} src={slide.src} alt="" style={{ objectPosition: slide.position }} fetchPriority={index === 0 ? 'high' : undefined} width="1600" height="1200" />)}</div>
         <div className="hero-shade" />
         <div className="shell hero-content hero-enter">
           <p className="eyebrow light"><span className="status-dot" /> CAPACITACIÓN + SERVICIOS INDUSTRIALES</p>
@@ -160,6 +174,7 @@ export default function CarryOnWebsite() {
           <div className="hero-actions"><a href="#contacto" className="button button-blue">Cotiza con nosotros <ArrowUpRight size={19} /></a><a href="#capacitacion" className="text-link">Conoce lo que hacemos <ArrowRight size={18} /></a></div>
         </div>
         <div className="shell hero-bottom hero-enter-delay"><span><MapPin size={15} /> {contact.location}</span><span>CONOCIMIENTO QUE SE LLEVA A LA PRÁCTICA <span className="small-cross">+</span></span></div>
+        <div className="hero-slide-controls" role="tablist" aria-label="Imágenes destacadas">{heroSlides.map((slide, index) => <button key={slide.src} className={index === activeHeroSlide ? 'is-active' : ''} onClick={() => setActiveHeroSlide(index)} role="tab" aria-selected={index === activeHeroSlide} aria-label={`Mostrar imagen ${index + 1}: ${slide.label}`} />)}</div>
         <div className="hero-side" aria-hidden="true">CARRYON / EN MOVIMIENTO</div>
       </section>
 
