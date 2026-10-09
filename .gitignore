@@ -8,7 +8,16 @@ node_modules/
 
 # Next.js
 /.next/
+/.next-hostgator/
+/deliverables/
 /out/
+/.preview/
+
+# Original client assets are retained locally; optimized website copies live in /public/images.
+/FOTOS 1/
+/FOTOS 2/
+/caon logo.png
+/CARRYON LOGO PARA FONDOS OBSCUROS.png
 
 # Production
 /build

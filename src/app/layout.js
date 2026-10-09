@@ -1,12 +1,12 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'CarryOn — Plataforma Digital de Capacitación Industrial',
-  description: 'Plataforma LMS especializada en capacitación industrial, cursos presenciales y virtuales, generador DC3 oficial STPS y servicios industriales en México.',
-  keywords: 'capacitación industrial, LMS México, cursos montacargas, DC3 STPS, seguridad industrial, CarryOn',
+  title: 'CarryOn | Capacitación y soluciones industriales en Monterrey',
+  description: 'Capacitación para operadores y servicios industriales en Monterrey, Nuevo León. Conoce CarryOn y solicita información para tu empresa.',
+  keywords: 'capacitación industrial Monterrey, cursos montacargas, servicios industriales, operadores, CarryOn',
   openGraph: {
-    title: 'CarryOn — Plataforma Digital de Capacitación Industrial',
-    description: 'De la operación manual a un sistema digital autónomo de capacitación y servicios industriales.',
+    title: 'CarryOn | Capacitación y soluciones industriales',
+    description: 'Personas preparadas. Operaciones que avanzan. Capacitación y servicios en Monterrey, Nuevo León.',
     type: 'website',
     locale: 'es_MX',
   },

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:hostgator": "node scripts/export-hostgator.mjs",
     "start": "next start",
     "lint": "next lint"
   },
