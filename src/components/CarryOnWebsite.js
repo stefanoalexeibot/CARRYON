@@ -5,11 +5,67 @@ import { ArrowUpRight, ArrowRight, Menu, X, MoveUpRight, MapPin, Phone, MessageC
 import { contact } from '@/data/contact';
 
 const links = [['Nosotros', '#nosotros'], ['Capacitación', '#capacitacion'], ['Servicios', '#servicios'], ['En acción', '#galeria']];
+const galleryGroup = (start, end, details) => Array.from({ length: end - start + 1 }, (_, offset) => ({
+  src: `gallery/carryon-${String(start + offset).padStart(2, '0')}`,
+  ...details,
+}));
+
 const photos = [
-  { src: 'operacion-montacargas', title: 'Aprender en la operación', label: 'PRÁCTICA EN CAMPO', alt: 'Operadores a bordo de un montacargas dentro de un almacén' },
-  { src: 'capacitacion-instructor', title: 'Conocimiento que se comparte', label: 'FORMACIÓN EN AULA', alt: 'Instructor de CarryOn impartiendo una sesión de operación de montacargas' },
-  { src: 'capacitacion-equipo', title: 'Equipos que se preparan', label: 'CAPACITACIÓN', alt: 'Participantes durante una sesión de capacitación en aula' },
-  { src: 'trabajo-en-altura', title: 'La práctica hace la diferencia', label: 'OPERACIÓN DE EQUIPOS', alt: 'Montacargas en operación junto a estanterías de un almacén' },
+  ...galleryGroup(1, 12, {
+    title: 'Montacargas en operación',
+    label: 'EQUIPOS INDUSTRIALES',
+    alt: 'Montacargas en operación dentro de instalaciones industriales',
+  }),
+  {
+    src: 'gallery/carryon-13',
+    title: 'Conocimiento que se comparte',
+    label: 'FORMACIÓN EN AULA',
+    alt: 'Instructor de CarryOn impartiendo una sesión de capacitación',
+  },
+  ...galleryGroup(14, 16, {
+    title: 'Equipos preparados para la operación',
+    label: 'MANEJO DE MATERIALES',
+    alt: 'Equipos de manejo de materiales en instalaciones industriales',
+  }),
+  {
+    src: 'gallery/carryon-17',
+    title: 'Un equipo que avanza unido',
+    label: 'EQUIPO CARRYON',
+    alt: 'Equipo CarryOn reunido en una sesión de trabajo',
+  },
+  ...galleryGroup(18, 21, {
+    title: 'Práctica en el entorno real',
+    label: 'OPERACIÓN SEGURA',
+    alt: 'Equipo industrial utilizado en la operación diaria',
+  }),
+  {
+    src: 'gallery/carryon-22',
+    title: 'Aprender para hacerlo mejor',
+    label: 'CAPACITACIÓN',
+    alt: 'Participantes de CarryOn durante una capacitación en aula',
+  },
+  {
+    src: 'gallery/carryon-23',
+    title: 'La práctica lleva al dominio',
+    label: 'OPERACIÓN DE EQUIPOS',
+    alt: 'Montacargas durante una práctica dentro de una planta industrial',
+  },
+  {
+    src: 'gallery/carryon-24',
+    title: 'Servicio técnico en acción',
+    label: 'SERVICIOS INDUSTRIALES',
+    alt: 'Personal realizando trabajo técnico en una instalación industrial',
+  },
+  ...galleryGroup(25, 27, {
+    title: 'La seguridad se lleva a la práctica',
+    label: 'CAPACITACIÓN EN CAMPO',
+    alt: 'Práctica de capacitación industrial de CarryOn',
+  }),
+  ...galleryGroup(28, 29, {
+    title: 'El valor está en el equipo',
+    label: 'CARRYON EN ACCIÓN',
+    alt: 'Equipo de CarryOn durante una sesión de trabajo',
+  }),
 ];
 const services = [
   ['Montacargas y plataformas', 'Soporte para equipos de manejo de materiales y plataformas elevadoras. Cuéntanos qué equipo utilizas y qué atención necesitas.'],
@@ -98,7 +154,7 @@ export default function CarryOnWebsite() {
         </div>
       </section>
 
-      <section className="section shell gallery" id="galeria"><div className="section-heading"><div><p className="eyebrow">04 / CARRYON EN ACCIÓN</p><h2>El trabajo habla.</h2></div><p>Momentos reales de capacitación y práctica.<br />Así se vive CarryOn, dentro y fuera del aula.</p></div><div className="gallery-grid">{photos.map((photo, index) => <button className={`gallery-item gallery-item-${index}`} key={photo.src} onClick={() => openPhoto(index)} aria-label={`Ampliar foto: ${photo.title}`}><img src={`/images/${photo.src}.jpg`} alt={photo.alt} width={index === 3 ? 960 : 1600} height={index === 3 ? 1280 : 900} loading="lazy" /><span className="gallery-overlay"><span><small>{photo.label}</small><strong>{photo.title}</strong></span><span className="gallery-open"><MoveUpRight size={19} /></span></span></button>)}</div></section>
+      <section className="section shell gallery" id="galeria"><div className="section-heading"><div><p className="eyebrow">04 / CARRYON EN ACCIÓN</p><h2>El trabajo habla.</h2></div><p>Momentos reales de capacitación y práctica.<br />Así se vive CarryOn, dentro y fuera del aula.</p></div><div className="gallery-grid">{photos.map((photo, index) => <button className="gallery-item" key={photo.src} onClick={() => openPhoto(index)} aria-label={`Ampliar foto: ${photo.title}`}><img src={`/images/${photo.src}.jpg`} alt={photo.alt} width="1600" height="1200" loading="lazy" /><span className="gallery-overlay"><span><small>{photo.label}</small><strong>{photo.title}</strong></span><span className="gallery-open"><MoveUpRight size={19} /></span></span></button>)}</div></section>
 
       <section className="coming-section"><div className="shell coming"><div className="coming-icon"><MonitorPlay size={35} strokeWidth={1.3} /></div><div className="coming-copy"><p className="eyebrow"><span className="coming-badge">PRÓXIMAMENTE</span> EL SIGUIENTE PASO</p><h2>CarryOn, también en línea.</h2><p>Estamos preparando un espacio digital para seguir aprendiendo: cursos en línea, seguimiento de tu capacitación y consulta de documentos en un solo lugar.</p><span className="coming-note">Estas funciones aún no están disponibles. Por ahora, te atendemos de forma directa.</span></div><WhatsAppLink className="underlined-link" message="Hola, me gustaría conocer más sobre la futura plataforma de capacitación de CarryOn.">Quiero saber más <ArrowUpRight size={19} /></WhatsAppLink></div></section>
 
