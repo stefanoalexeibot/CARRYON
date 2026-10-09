@@ -160,7 +160,7 @@ export default function CarryOnWebsite() {
         <a className="button nav-cta" href="#contacto">Hablemos <ArrowUpRight size={17} /></a>
         <button className="menu-toggle" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} aria-controls="mobile-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
       </div>
-      {menuOpen && <nav id="mobile-nav" className="mobile-nav" aria-label="Navegación móvil" onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }}>{[...links, ['Contacto', '#contacto']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}<ArrowUpRight size={18} /></a>)}</nav>}
+      {menuOpen && <nav id="mobile-nav" className="mobile-nav" aria-label="Navegación móvil" onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }}>{[...links, ['Galería completa', '/galeria'], ['Contacto', '#contacto']].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}<ArrowUpRight size={18} /></a>)}</nav>}
     </header>
 
     <main id="contenido">
