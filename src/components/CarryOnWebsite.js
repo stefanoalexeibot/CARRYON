@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { ArrowUpRight, ArrowRight, Menu, X, MoveUpRight, MapPin, Phone, MessageCircle, Check, Plus, GraduationCap, Wrench, MonitorPlay } from 'lucide-react';
 import { contact } from '@/data/contact';
 
-const links = [['Nosotros', '#nosotros'], ['Capacitación', '#capacitacion'], ['Servicios', '#servicios'], ['En acción', '#galeria']];
+const links = [['Nosotros', '#nosotros'], ['Capacitación', '#capacitacion'], ['Servicios', '#servicios'], ['Pólizas', '#polizas'], ['En acción', '#galeria']];
 const galleryGroup = (start, end, details) => Array.from({ length: end - start + 1 }, (_, offset) => ({
   src: `gallery/carryon-${String(start + offset).padStart(2, '0')}`,
   ...details,
@@ -15,57 +15,85 @@ const photos = [
     title: 'Montacargas en operación',
     label: 'EQUIPOS INDUSTRIALES',
     alt: 'Montacargas en operación dentro de instalaciones industriales',
+    category: 'Operación',
   }),
   {
     src: 'gallery/carryon-13',
     title: 'Conocimiento que se comparte',
     label: 'FORMACIÓN EN AULA',
     alt: 'Instructor de CarryOn impartiendo una sesión de capacitación',
+    category: 'Capacitación',
   },
   ...galleryGroup(14, 16, {
     title: 'Equipos preparados para la operación',
     label: 'MANEJO DE MATERIALES',
     alt: 'Equipos de manejo de materiales en instalaciones industriales',
+    category: 'Operación',
   }),
   {
     src: 'gallery/carryon-17',
     title: 'Un equipo que avanza unido',
     label: 'EQUIPO CARRYON',
     alt: 'Equipo CarryOn reunido en una sesión de trabajo',
+    category: 'Equipo',
   },
   ...galleryGroup(18, 21, {
     title: 'Práctica en el entorno real',
     label: 'OPERACIÓN SEGURA',
     alt: 'Equipo industrial utilizado en la operación diaria',
+    category: 'Operación',
   }),
   {
     src: 'gallery/carryon-22',
     title: 'Aprender para hacerlo mejor',
     label: 'CAPACITACIÓN',
     alt: 'Participantes de CarryOn durante una capacitación en aula',
+    category: 'Capacitación',
   },
   {
     src: 'gallery/carryon-23',
     title: 'La práctica lleva al dominio',
     label: 'OPERACIÓN DE EQUIPOS',
     alt: 'Montacargas durante una práctica dentro de una planta industrial',
+    category: 'Capacitación',
   },
   {
     src: 'gallery/carryon-24',
     title: 'Servicio técnico en acción',
     label: 'SERVICIOS INDUSTRIALES',
     alt: 'Personal realizando trabajo técnico en una instalación industrial',
+    category: 'Servicios',
   },
   ...galleryGroup(25, 27, {
     title: 'La seguridad se lleva a la práctica',
     label: 'CAPACITACIÓN EN CAMPO',
     alt: 'Práctica de capacitación industrial de CarryOn',
+    category: 'Capacitación',
   }),
   ...galleryGroup(28, 29, {
     title: 'El valor está en el equipo',
     label: 'CARRYON EN ACCIÓN',
     alt: 'Equipo de CarryOn durante una sesión de trabajo',
+    category: 'Equipo',
   }),
+];
+const courseGroups = [
+  {
+    title: 'Operación de equipos',
+    courses: ['Montacargas vertical y horizontal', 'Montacargas trilateral y clamp', 'Patín eléctrico e hidráulico', 'Grúas viajeras'],
+  },
+  {
+    title: 'Seguridad industrial',
+    courses: ['Bloqueo y etiquetado de energías (LOTO)', 'Espacios confinados', 'Recipientes sujetos a presión', 'Prevención y combate a incendios', 'Comisiones de seguridad'],
+  },
+  {
+    title: 'Riesgos y protección',
+    courses: ['Manejo de sustancias químicas y peligrosas', 'Uso y manejo de extintores', 'Trabajo en alturas', 'Manejo seguro de la electricidad', 'Selección y uso de EPP'],
+  },
+  {
+    title: 'Formación técnica',
+    courses: ['Soldadura', 'SolidWorks', 'Manejo seguro de herramientas', 'Seguridad industrial'],
+  },
 ];
 const services = [
   ['Montacargas y plataformas', 'Soporte para equipos de manejo de materiales y plataformas elevadoras. Cuéntanos qué equipo utilizas y qué atención necesitas.'],
@@ -136,14 +164,7 @@ export default function CarryOnWebsite() {
           <div className="section-heading"><div><p className="eyebrow">02 / CAPACITACIÓN INDUSTRIAL</p><h2>Aprender para<br /><span className="muted">hacerlo mejor.</span></h2></div><p>Formación que conecta el aula con la operación.<br />Consulta los temas y opciones para tu equipo.</p></div>
           <div className="training-grid">
             <div className="training-feature"><img src="/images/capacitacion-instructor.jpg" alt="Instructor explicando la operación de montacargas durante una capacitación" width="1600" height="900" loading="lazy" /><div className="photo-tag"><span className="status-dot" /> CONOCIMIENTO EN ACCIÓN</div><div className="training-caption"><span>De la teoría<br />a tu lugar de trabajo.</span><ArrowUpRight size={35} strokeWidth={1} /></div></div>
-            <div className="course-list">
-              {[
-                ['01', 'Operación de montacargas', 'Capacitación para operadores de montacargas eléctricos y de combustión.'],
-                ['02', 'Plataformas elevadoras', 'Formación para el manejo de plataformas y equipos de elevación.'],
-                ['03', 'Seguridad en la operación', 'Preparación del personal con enfoque en el entorno de trabajo industrial.'],
-              ].map(([number, title, description]) => <a className="course" key={number} href="#contacto"><span className="course-number">{number}</span><div><h3>{title}</h3><p>{description}</p></div><ArrowUpRight size={21} /></a>)}
-              <div className="course-note"><Check size={19} /><p>Platícanos qué necesita tu equipo. Te orientamos sobre contenidos, modalidad y disponibilidad.</p></div>
-            </div>
+            <div className="course-catalogue"><div className="catalogue-intro"><span className="catalogue-mark"><Check size={18} /></span><div><h3>Catálogo de capacitación</h3><p>Todos nuestros cursos incluyen emisión de DC3.</p></div></div>{courseGroups.map((group) => <div className="course-group" key={group.title}><h3>{group.title}</h3><ul>{group.courses.map((course) => <li key={course}><a href="#contacto">{course}<ArrowUpRight size={15} /></a></li>)}</ul></div>)}<a className="catalogue-cta" href="#contacto">Solicitar información de un curso <ArrowUpRight size={18} /></a></div>
           </div>
         </div>
       </section>
@@ -154,11 +175,13 @@ export default function CarryOnWebsite() {
         </div>
       </section>
 
-      <section className="section shell gallery" id="galeria"><div className="section-heading"><div><p className="eyebrow">04 / CARRYON EN ACCIÓN</p><h2>El trabajo habla.</h2></div><p>Momentos reales de capacitación y práctica.<br />Así se vive CarryOn, dentro y fuera del aula.</p></div><div className="gallery-grid">{photos.map((photo, index) => <button className="gallery-item" key={photo.src} onClick={() => openPhoto(index)} aria-label={`Ampliar foto: ${photo.title}`}><img src={`/images/${photo.src}.jpg`} alt={photo.alt} width="1600" height="1200" loading="lazy" /><span className="gallery-overlay"><span><small>{photo.label}</small><strong>{photo.title}</strong></span><span className="gallery-open"><MoveUpRight size={19} /></span></span></button>)}</div></section>
+      <section className="maintenance section" id="polizas"><div className="shell maintenance-layout"><div className="maintenance-image"><img src="/images/gallery/carryon-24.jpg" alt="Trabajo técnico de mantenimiento industrial" width="1600" height="1200" loading="lazy" /><span>ATENCIÓN PARA TU OPERACIÓN</span></div><div className="maintenance-content"><p className="eyebrow">04 / MANTENIMIENTO Y PÓLIZAS</p><h2>Equipos atendidos.<br /><span className="muted">Operación en marcha.</span></h2><p>CarryOn ofrece servicios de mantenimiento y pólizas para acompañar las necesidades de tu operación industrial.</p><div className="maintenance-points"><div><span>01</span><h3>Mantenimiento</h3><p>Atención para equipos, instalaciones y requerimientos técnicos de tu empresa.</p></div><div><span>02</span><h3>Pólizas</h3><p>Alternativas de servicio pensadas para dar seguimiento a tu operación.</p></div><div><span>03</span><h3>Solicitud directa</h3><p>Cuéntanos qué equipo o instalación necesitas atender y te orientamos.</p></div></div><a href="#contacto" className="button button-blue">Solicitar información <ArrowUpRight size={19} /></a></div></div></section>
+
+      <section className="section shell gallery" id="galeria"><div className="section-heading"><div><p className="eyebrow">05 / CARRYON EN ACCIÓN</p><h2>El trabajo habla.</h2></div><p>Momentos reales de capacitación y práctica.<br />Así se vive CarryOn, dentro y fuera del aula.</p></div><div className="gallery-grid gallery-preview-grid">{photos.slice(0, 8).map((photo, index) => <button className="gallery-item" key={photo.src} onClick={() => openPhoto(index)} aria-label={`Ampliar foto: ${photo.title}`}><img src={`/images/${photo.src}.jpg`} alt={photo.alt} width="1600" height="1200" loading="lazy" /><span className="gallery-overlay"><span><small>{photo.label}</small><strong>{photo.title}</strong></span><span className="gallery-open"><MoveUpRight size={19} /></span></span></button>)}</div><div className="gallery-preview-action"><div><strong>Más de 20 momentos de CarryOn</strong><span>Capacitación, operación, servicios y equipo.</span></div><a className="button button-outline" href="/galeria">Ver galería completa <ArrowUpRight size={18} /></a></div></section>
 
       <section className="coming-section"><div className="shell coming"><div className="coming-icon"><MonitorPlay size={35} strokeWidth={1.3} /></div><div className="coming-copy"><p className="eyebrow"><span className="coming-badge">PRÓXIMAMENTE</span> EL SIGUIENTE PASO</p><h2>CarryOn, también en línea.</h2><p>Estamos preparando un espacio digital para seguir aprendiendo: cursos en línea, seguimiento de tu capacitación y consulta de documentos en un solo lugar.</p><span className="coming-note">Estas funciones aún no están disponibles. Por ahora, te atendemos de forma directa.</span></div><WhatsAppLink className="underlined-link" message="Hola, me gustaría conocer más sobre la futura plataforma de capacitación de CarryOn.">Quiero saber más <ArrowUpRight size={19} /></WhatsAppLink></div></section>
 
-      <section className="section shell contact" id="contacto"><div className="contact-copy"><p className="eyebrow">05 / HABLEMOS</p><h2>¿Qué necesita<br /><span className="muted">tu operación?</span></h2><p>Cuéntanos qué tienes en mente. Juntos podemos encontrar el siguiente paso para tu equipo o tu empresa.</p><a className="contact-phone" href={`tel:${contact.phone}`}>{contact.phoneLabel}<ArrowUpRight size={25} /></a><span className="location"><MapPin size={17} />{contact.location}</span><WhatsAppLink className="underlined-link"><MessageCircle size={18} /> Prefiero escribir por WhatsApp <ArrowUpRight size={17} /></WhatsAppLink></div>
+      <section className="section shell contact" id="contacto"><div className="contact-copy"><p className="eyebrow">06 / HABLEMOS</p><h2>¿Qué necesita<br /><span className="muted">tu operación?</span></h2><p>Cuéntanos qué tienes en mente. Juntos podemos encontrar el siguiente paso para tu equipo o tu empresa.</p><a className="contact-phone" href={`tel:${contact.phone}`}>{contact.phoneLabel}<ArrowUpRight size={25} /></a><span className="location"><MapPin size={17} />{contact.location}</span><WhatsAppLink className="underlined-link"><MessageCircle size={18} /> Prefiero escribir por WhatsApp <ArrowUpRight size={17} /></WhatsAppLink></div>
         <form className="contact-form" onSubmit={sendRequest}><h3>Comencemos una conversación.</h3><p>Prepara tu solicitud y compártela con nosotros por WhatsApp.</p><div className="form-row"><label>Tu nombre <span>*</span><input name="nombre" placeholder="Nombre y apellido" required maxLength={100} autoComplete="name" pattern=".*\S.*" /></label><label>Empresa<input name="empresa" placeholder="Nombre de tu empresa" maxLength={150} autoComplete="organization" /></label></div><label>¿En qué podemos ayudarte? <span>*</span><select name="interes" required defaultValue=""><option value="" disabled>Selecciona una opción</option><option>Capacitación industrial</option><option>Servicios industriales</option><option>Capacitación y servicios</option><option>Información general</option></select></label><label>Cuéntanos un poco más <span>*</span><textarea name="mensaje" placeholder="Equipo, tipo de servicio, número de participantes…" required maxLength={2000} rows={3} /></label><button className="button button-blue" type="submit">Continuar en WhatsApp <ArrowUpRight size={19} /></button><p className="form-note" role="status">{requestReady ? 'Tu solicitud está preparada. Revisa el mensaje en WhatsApp y pulsa enviar para hacérnoslo llegar.' : 'Se abrirá WhatsApp con tu mensaje. Tú lo revisas y decides cuándo enviarlo.'}</p></form>
       </section>
     </main>
